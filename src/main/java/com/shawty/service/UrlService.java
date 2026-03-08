@@ -6,6 +6,7 @@ import com.shawty.entity.Url;
 import com.shawty.repository.UrlRepository;
 import com.shawty.utils.ShortcodeGenerator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -48,6 +49,7 @@ public class UrlService {
         throw new RuntimeException("Failed to generate shortcode.");
     }
 
+    @Cacheable(value = "urls", key = "#shortCode")
     public String getOriginalUrl(String shortCode) {
         Url url = repository.findByShortCode(shortCode)
                 .orElseThrow(() -> new RuntimeException("Url not found!"));
