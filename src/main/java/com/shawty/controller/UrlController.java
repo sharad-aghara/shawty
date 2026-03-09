@@ -13,10 +13,13 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/urls")
-@RequiredArgsConstructor
 public class UrlController {
 
     private final UrlService service;
+
+    public UrlController(UrlService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public CreateUrlResponse createUrl(
