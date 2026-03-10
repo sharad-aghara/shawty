@@ -34,7 +34,7 @@ public class UrlService {
         repository.save(url);
 
         return new CreateUrlResponse(
-                "http://localhost:8080/" + shortCode
+                "http://localhost:8080/api/v1/urls/" + shortCode
         );
     }
 
